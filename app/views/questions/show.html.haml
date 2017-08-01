@@ -1,0 +1,17 @@
+%h1 StackJoeverFlow
+
+= link_to 'Back', questions_path, class: "btn btn-default"
+%fieldset
+  %legend Question Profile Page
+  %h3= @question.title
+  %p= markdown(@question.body)
+  = link_to 'Edit', edit_question_path(@question), class: "btn btn-primary"
+  = link_to 'Delete', question_path(@question), method: :delete, data: {confirm: 'Are You Sure?'}, class: "btn btn-danger"
+  %br/
+  %br/
+%fieldset
+  %strong Add An Answer
+  = render :partial => 'answers/form'
+  %br/
+  %br/
+  %strong Community Answers

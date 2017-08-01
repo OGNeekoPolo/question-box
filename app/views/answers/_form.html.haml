@@ -1,0 +1,7 @@
+= form_for :answser, url: new_answer_path do |a|
+  %p
+    = a.label :body
+    %br/
+    = a.text_area :body
+  %p
+    = a.submit 'Post Answer'

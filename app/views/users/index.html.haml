@@ -1,0 +1,18 @@
+%h1 Welcom to StackJoeverFlow
+%br/
+%fieldset
+  %legend Member Log-In
+  = form_for :user do |u|
+    %p
+      = u.label :username
+      %br/
+      = u.text_field :username
+    %p
+      = u.label :password
+      %br/
+      = u.password_field :password
+    %p
+      = u.submit "Login"
+    %br/
+  %h4 If Not Already A Member
+  = link_to 'Member Registration', new_user_path
