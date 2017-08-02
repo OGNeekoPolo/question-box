@@ -1,14 +1,12 @@
 Rails.application.routes.draw do
 
-  resources :answers
-
   resources :questions
+
+  post 'questions/:id', to: 'answers#create'
 
   post '/questions/new', to: 'questions#create'
 
   post 'questions/:id/edit', to: 'questions#update'
-
-  post 'answers/new', to: 'answers#create'
 
   post 'users/new', to: 'users#create'
 
@@ -19,6 +17,10 @@ Rails.application.routes.draw do
   get '/logout', to: 'sessions#destroy', as: :logout
 
   get '/users', to: 'users#index', as: :login
+
+  post '/answers/:id/edit', to: 'answers#update'
+
+  resources :answers
 
   root 'users#index'
 end

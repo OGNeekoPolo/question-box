@@ -11,11 +11,14 @@ class QuestionsController < ApplicationController
 
   def create
     @question = Question.new(questions_params)
-
+    @question.user_id_id = session[:current_user_id]
+    respond_to do |format|
     if @question.save
-      redirect_to questions_path
+      format.html {redirect_to @question, notice: "Question was successfully created."}
+      format.json {render :show, status: :created, location: @question}
     else
-      render 'new'
+      format.html {render :new}
+      format.json {render json: @question.errors, status: :unprocessable_entity}
     end
   end
 
@@ -32,7 +35,7 @@ class QuestionsController < ApplicationController
     @question = Question.find(params[:id])
 
     if @question.update(questions_params)
-      redirect_to question_path(@question)
+      redirect_to @question
     else
       render 'edit'
     end

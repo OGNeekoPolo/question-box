@@ -10,6 +10,7 @@ Question.delete_all
 Question.create(
   id: 1,
   title: "Welcome to StackJoverFlow",
+  user_id: 2,
   body: "There Is Something You Should Know!
 
   This is my very first post using markdown!
@@ -20,12 +21,14 @@ Question.create(
 Question.create(
   id: 2,
   title: "Whats for lunch?",
+  user_id: 1,
   body: "Im starving. Where is a good place to go for lunch?"
 )
 
 Question.create(
   id: 3,
   title: "How do you render forms in RoR?",
+  user_id: 4,
   body: "I have been trying to use the `render` helper in my HTML
 
   But for some reasone it will
@@ -36,5 +39,6 @@ Question.create(
 Question.create(
   id: 4,
   title: "What is pagination?",
+  user_id: 3,
   body: "Pagination has always given me trouble. How do I fix it?"
 )

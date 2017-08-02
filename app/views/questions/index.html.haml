@@ -1,13 +1,22 @@
-%h1 StackJoeverFlow
+.container-fluid
+  .jumbotron.text-center
+    %h1 StackJoeverFlow
+    = image_tag("mario-block.png", size: "50x50")
 
-= link_to 'Create A Question', new_question_path, class: "btn btn-primary"
-= link_to 'Logout', logout_path, data: {confirm: 'Are you sure you want to logout?'}, class: "btn btn-warning"
-%br/
-%br/
-%fieldset
-  %legend Community Questions
-  - @questions.each do |question|
-    = link_to "#{question.title}", question_path(question)
-    %br/
-    %br/
+  .nav-justified
+    = link_to 'Create A Question', new_question_path, class: "btn btn-primary"
+    = link_to 'Logout', logout_path, data: {confirm: 'Are you sure you want to logout?'}, class: "btn btn-warning"
+  %br/
+  %br/
+  %fieldset
+    %legend Community Questions
+    .text-center
+      - @questions.each do |question|
+
+        %strong= link_to "#{question.title}", question_path(question)
+        %br/
+        %p= "Posted by: #{question.user.username}"
+        %p= "Created at: #{question.created_at}"
+        %br/
+        %br/
 = paginate @questions

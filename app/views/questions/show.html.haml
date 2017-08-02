@@ -1,17 +1,34 @@
-%h1 StackJoeverFlow
+.container-fluid
+  .jumbotron.text-center
+    %h1 StackJoeverFlow
+    = image_tag("mario-block.png", size: "50x50")
 
-= link_to 'Back', questions_path, class: "btn btn-default"
-%fieldset
-  %legend Question Profile Page
-  %h3= @question.title
-  %p= markdown(@question.body)
-  = link_to 'Edit', edit_question_path(@question), class: "btn btn-primary"
-  = link_to 'Delete', question_path(@question), method: :delete, data: {confirm: 'Are You Sure?'}, class: "btn btn-danger"
-  %br/
-  %br/
-%fieldset
-  %strong Add An Answer
-  = render :partial => 'answers/form'
-  %br/
-  %br/
-  %strong Community Answers
+  = link_to 'Back', questions_path, class: "btn btn-default"
+  %fieldset
+    %legend Question Profile Page
+    %h3= @question.title
+    %br/
+    %p= markdown(@question.body)
+    - if @question.user_id == session[:current_user_id]
+      = link_to 'Edit', edit_question_path(@question), class: "btn btn-primary"
+      = link_to 'Delete', question_path(@question), method: :delete, data: {confirm: 'Are You Sure?'}, class: "btn btn-danger"
+    %br/
+    %br/
+  %fieldset
+    %strong Add An Answer
+    = render :partial => 'answers/form'
+    %br/
+    %br/
+    %strong Community Answers
+    %br/
+    %br/
+    - if @answers.empty?
+      %strong No Answers Yet!
+    - else
+      - @answers.each do |answer|
+        %div
+          %strong= "Posted by: #{answer.user.username}"
+          %p= markdown(answer.body)
+          - if answer.user_id == session[:current_user_id]
+            = link_to 'Edit', edit_answer_path(answer), class: "btn btn-primary"
+            = link_to 'Delete', answer_path(answer), method: :delete, data: {confirm: 'Delete this answer?'}, class: "btn btn-primary"
