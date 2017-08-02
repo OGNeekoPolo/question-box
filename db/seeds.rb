@@ -5,6 +5,28 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+User.create(
+  id: 2,
+  username: 'BritDaSkywalker',
+  email: 'bndufinetz@gmail.com',
+  password: 'rico1212'
+)
+
+User.create(
+  id: 3,
+  username: 'Test3',
+  email: 'test3@gmail.com',
+  password: 'test03'
+)
+
+User.create(
+  id: 4,
+  username: 'Test4',
+  email: 'test4@gmail.com',
+  password: 'test04'
+)
+
+
 Question.delete_all
 
 Question.create(
@@ -41,4 +63,31 @@ Question.create(
   title: "What is pagination?",
   user_id: 3,
   body: "Pagination has always given me trouble. How do I fix it?"
+)
+
+Answer.create(
+  id: 1,
+  body: 'Stack JF is the shizz!!',
+  user_id: 2,
+  question_id: 1
+)
+
+Answer.create(
+  id: 2,
+  body: 'Stack JF is the shizz!!',
+  user_id: 3,
+  question_id: 2
+)
+
+Answer.create(
+  id: 3,
+  body: 'Stack JF is the shizz!!',
+  user_id: 1,
+  question_id: 4
+)
+Answer.create(
+  id: 4,
+  body: 'Stack JF is the shizz!!',
+  user_id: 4,
+  question_id: 3
 )

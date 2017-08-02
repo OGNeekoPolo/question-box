@@ -15,8 +15,12 @@
     %br/
     %br/
   %fieldset
-    %strong Add An Answer
-    = render :partial => 'answers/form'
+    - if current_user
+      %strong Add An Answer
+      = render :partial => 'answers/form'
+    - else
+      %p Wanna chime in?
+      = link_to 'Login or Register', root_path
     %br/
     %br/
     %strong Community Answers

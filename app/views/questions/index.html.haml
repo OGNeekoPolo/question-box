@@ -5,7 +5,10 @@
 
   .nav-justified
     = link_to 'Create A Question', new_question_path, class: "btn btn-primary"
-    = link_to 'Logout', logout_path, data: {confirm: 'Are you sure you want to logout?'}, class: "btn btn-warning"
+    - if session[:current_user_id]
+      = link_to 'Logout', logout_path, data: {confirm: 'Are you sure you want to logout?'}, class: "btn btn-danger"
+    - else
+      = link_to 'Login', root_path, class: "btn btn-warning"
   %br/
   %br/
   %fieldset

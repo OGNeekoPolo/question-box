@@ -1,5 +1,5 @@
 class QuestionsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:index, :show]
 
   def index
     @questions = Question.all.page params[:page]
@@ -11,7 +11,7 @@ class QuestionsController < ApplicationController
 
   def create
     @question = Question.new(questions_params)
-    @question.user_id_id = session[:current_user_id]
+    @question.user = current_user
     respond_to do |format|
       if @question.save
         format.html {redirect_to @question, notice: "Question was successfully created."}
