@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170731185605) do
+ActiveRecord::Schema.define(version: 20170802143558) do
 
   create_table "answers", force: :cascade do |t|
     t.text "body"
@@ -37,6 +37,8 @@ ActiveRecord::Schema.define(version: 20170731185605) do
     t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "api_token"
+    t.index ["api_token"], name: "index_users_on_api_token", unique: true
   end
 
 end

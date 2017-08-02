@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+  include ActionController::HttpAuthentication::Token::ControllerMethods
+
   protect_from_forgery with: :exception
 
   helper_method :current_user
@@ -8,9 +10,12 @@ class ApplicationController < ActionController::Base
   end
 
   def authenticate_user!
-   if user_signed_in? != true
-     redirect_to login_path
-   end
+    if user_signed_in? != true
+      respond_to do |format|
+        format.html {redirect_to login_path}
+        format.json {render json: {error: "Restricted"}, status: :unauthorized}
+      end
+    end
   end
 
   def user_signed_in?

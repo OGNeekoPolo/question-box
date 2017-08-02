@@ -1,12 +1,27 @@
 class AnswersController < ApplicationController
+  before_action :authenticate_user!, except: [:index, :show]
+
+  def index
+    @answers = Answer.all
+    render json: @answers
+  end
+
+  def show
+    @answer = Answer.find(params[:id])
+  end
+
   def create
     @answer = Answer.create(answer_params)
     @answer.user = current_user
     @answer.question = Question.find(params[:id])
-    if @answer.save
-      redirect_to question_path(@answer.question)
-    else
-      redirect_to questions_path
+    respond_to do |format|
+      if @answer.save
+        format.html {redirect_to question_path(@answer.question), notice: "Answer successfully created."}
+        format.json {render :show, status: :created, location: @answer}
+      else
+        format.html {redirect_to question_path(@answer.question), notice: "Answer was not able to be saved."}
+        format.json {render json: @answer.errors, status: :unprocessable_entity}
+      end
     end
   end
 
@@ -17,10 +32,14 @@ class AnswersController < ApplicationController
   def update
     @answer = Answer.find(params[:id])
     if @answer.user == current_user
-      if @answer.update(answer_params)
-        redirect_to question_path(@answer.question)
-      else
-        render 'edit'
+      respond_to do |format|
+        if @answer.update(answer_params)
+          format.html {redirect_to question_path(@answer.question), notice: "Answer has been updated"}
+          format.json {render :show, status: :ok, location: @answer}
+        else
+          format.html {render :edit}
+          format.json {render json: @answer.errors, status: :unprocessable_entity}
+        end
       end
     end
   end
@@ -29,7 +48,10 @@ class AnswersController < ApplicationController
     @answer = Answer.find(params[:id])
     @question = @answer.question
     @answer.destroy
-    redirect_to question_path(@question)
+    respond_to do |format|
+      format.html {redirect_to question_path(@question), notice: "Answer has been deleted"}
+      format.json {head :no_content}
+    end
   end
 
   private

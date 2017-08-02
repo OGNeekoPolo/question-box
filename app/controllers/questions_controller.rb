@@ -13,12 +13,13 @@ class QuestionsController < ApplicationController
     @question = Question.new(questions_params)
     @question.user_id_id = session[:current_user_id]
     respond_to do |format|
-    if @question.save
-      format.html {redirect_to @question, notice: "Question was successfully created."}
-      format.json {render :show, status: :created, location: @question}
-    else
-      format.html {render :new}
-      format.json {render json: @question.errors, status: :unprocessable_entity}
+      if @question.save
+        format.html {redirect_to @question, notice: "Question was successfully created."}
+        format.json {render :show, status: :created, location: @question}
+      else
+        format.html {render :new}
+        format.json {render json: @question.errors, status: :unprocessable_entity}
+      end
     end
   end
 
@@ -33,18 +34,24 @@ class QuestionsController < ApplicationController
 
   def update
     @question = Question.find(params[:id])
-
-    if @question.update(questions_params)
-      redirect_to @question
-    else
-      render 'edit'
+    respond_to do |format|
+      if @question.update(questions_params)
+        format.html {redirect_to @question, notice: "Question was successfully updated."}
+        format.json {render :show, status: :ok, location: @question}
+      else
+        format.html {render :edit}
+        format.json {render json: @question.errors, status: :unprocessable_entity}
+      end
     end
   end
 
   def destroy
     @question = Question.find(params[:id])
     @question.destroy
-    redirect_to questions_path
+    respond_to do |format|
+      format.html {redirect_to questions_path, notice: "Question was successfully deleted."}
+      format.json {head :no_content}
+    end
   end
 
   private
