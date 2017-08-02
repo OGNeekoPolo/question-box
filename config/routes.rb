@@ -29,7 +29,6 @@
 
 Rails.application.routes.draw do
 
-  resources :questions
 
   post 'questions/:id', to: 'answers#create'
 
@@ -50,6 +49,8 @@ Rails.application.routes.draw do
   post '/answers/:id/edit', to: 'answers#update'
 
   resources :answers
+
+  resources :questions
 
   root 'users#index'
 end
