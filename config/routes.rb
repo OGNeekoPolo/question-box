@@ -1,40 +1,35 @@
-# Prefix Verb    URI Pattern                               Controller#Action
-
-# questions GET    /questions(.:format)                    questions#index
-#        POST   /questions(.:format)                       questions#create
-# new_question GET    /questions/new(.:format)             questions#new
-# edit_question GET    /questions/:id/edit(.:format)       questions#edit
-# question GET    /questions/:id(.:format)                 questions#show
-#        PATCH  /questions/:id(.:format)                   questions#update
-#        PUT    /questions/:id(.:format)                   questions#update
-#        DELETE /questions/:id(.:format)                   questions#destroy
-#        POST   /questions/:id(.:format)                   answers#create
-# questions_new POST   /questions/new(.:format)            questions#create
-#        POST   /questions/:id/edit(.:format)              questions#update
-# users_new POST   /users/new(.:format)                    users#create
-# new_user GET    /users/new(.:format)                     users#new
-#  users POST   /users(.:format)                           sessions#create
-# logout GET    /logout(.:format)                          sessions#destroy
-#  login GET    /users(.:format)                           users#index
-#        POST   /answers/:id/edit(.:format)                answers#update
-# answers GET    /answers(.:format)                        answers#index
-#        POST   /answers(.:format)                         answers#create
-# new_answer GET    /answers/new(.:format)                 answers#new
-# edit_answer GET    /answers/:id/edit(.:format)           answers#edit
-# answer GET    /answers/:id(.:format)                     answers#show
-#        PATCH  /answers/:id(.:format)                     answers#update
-#        PUT    /answers/:id(.:format)                     answers#update
-#        DELETE /answers/:id(.:format)                     answers#destroy
-#   root GET    /                                          users#index
-
+#             Prefix Verb       URI Pattern                                  Controller#Action
+#            new_user GET    /users/new(.:format)                               users#new
+#               users POST   /users(.:format)                                   sessions#create
+#              logout GET    /logout(.:format)                                  sessions#destroy
+#               login GET    /users(.:format)                                   users#index
+#    question_answers GET    /questions/:question_id/answers(.:format)          answers#index
+#                     POST   /questions/:question_id/answers(.:format)          answers#create
+# new_question_answer GET    /questions/:question_id/answers/new(.:format)      answers#new
+# edit_question_answer GET    /questions/:question_id/answers/:id/edit(.:format) answers#edit
+#     question_answer GET    /questions/:question_id/answers/:id(.:format)      answers#show
+#                     PATCH  /questions/:question_id/answers/:id(.:format)      answers#update
+#                     PUT    /questions/:question_id/answers/:id(.:format)      answers#update
+#                     DELETE /questions/:question_id/answers/:id(.:format)      answers#destroy
+#           questions GET    /questions(.:format)                               questions#index
+#                     POST   /questions(.:format)                               questions#create
+#        new_question GET    /questions/new(.:format)                           questions#new
+#       edit_question GET    /questions/:id/edit(.:format)                      questions#edit
+#            question GET    /questions/:id(.:format)                           questions#show
+#                     PATCH  /questions/:id(.:format)                           questions#update
+#                     PUT    /questions/:id(.:format)                           questions#update
+#                     DELETE /questions/:id(.:format)                           questions#destroy
+#                root GET    /                                                  users#index
 Rails.application.routes.draw do
 
 
-  post 'questions/:id', to: 'answers#create'
 
   post '/questions/new', to: 'questions#create'
 
   post 'questions/:id/edit', to: 'questions#update'
+
+  post 'questions/:id', to: 'answers#create'
+
 
   post 'users/new', to: 'users#create'
 
@@ -46,11 +41,11 @@ Rails.application.routes.draw do
 
   get '/users', to: 'users#index', as: :login
 
-  post '/answers/:id/edit', to: 'answers#update'
+  post '/questions/:question_id/answers/:id/edit', to: 'answers#update'
 
-  resources :answers
-
-  resources :questions
+  resources :questions do
+    resources :answers
+  end
 
   root 'users#index'
 end

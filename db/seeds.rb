@@ -5,101 +5,90 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-User.delete_all
-
-Question.delete_all
-
-Answer.delete_all
-
-User.create(
-  id: 1,
-  username: 'OGNeeko',
-  email: 'nktrabue@gmail.com',
-  password: 'number45'
-)
-
-User.create(
-  id: 2,
-  username: 'BritDaSkywalker',
-  email: 'bndufinetz@gmail.com',
-  password: 'rico1212'
-)
-
-User.create(
-  id: 3,
-  username: 'Test3',
-  email: 'test3@gmail.com',
-  password: 'test03'
-)
-
-User.create(
-  id: 4,
-  username: 'Test4',
-  email: 'test4@gmail.com',
-  password: 'test04'
-)
-
-
-
-Question.create(
-  id: 1,
-  title: "Welcome to StackJoverFlow",
-  user_id: 2,
-  body: "There Is Something You Should Know!
-
-  This is my very first post using markdown!
-
-  How do you like it?  I learned this from [RichOnRails.com](http://richonrails.com/articles/rendering-markdown-with-redcarpet)!"
-)
-
-Question.create(
-  id: 2,
-  title: "Whats for lunch?",
-  user_id: 1,
-  body: "Im starving. Where is a good place to go for lunch?"
-)
-
-Question.create(
-  id: 3,
-  title: "How do you render forms in RoR?",
-  user_id: 4,
-  body: "I have been trying to use the `render` helper in my HTML
-
-  But for some reasone it will
-  ###NOT
-  Do what I want it to"
-)
-
-Question.create(
-  id: 4,
-  title: "What is pagination?",
-  user_id: 3,
-  body: "Pagination has always given me trouble. How do I fix it?"
-)
-
-Answer.create(
-  id: 1,
-  body: 'Stack JF is the shizz!!',
-  user_id: 2,
-  question_id: 1
-)
-
-Answer.create(
-  id: 2,
-  body: 'Stack JF is the shizz!!',
-  user_id: 3,
-  question_id: 2
-)
-
-Answer.create(
-  id: 3,
-  body: 'Stack JF is the shizz!!',
-  user_id: 1,
-  question_id: 4
-)
-Answer.create(
-  id: 4,
-  body: 'Stack JF is the shizz!!',
-  user_id: 4,
-  question_id: 3
-)
+# Answer.delete_all
+#
+# Question.delete_all
+#
+# User.delete_all
+#
+#
+# User.create(
+#   username: 'OGNeeko',
+#   email: 'nktrabue@gmail.com',
+#   password: 'number45'
+# )
+#
+# User.create(
+#   username: 'BritDaSkywalker',
+#   email: 'bndufinetz@gmail.com',
+#   password: 'rico1212'
+# )
+#
+# User.create(
+#   username: 'Test3',
+#   email: 'test3@gmail.com',
+#   password: 'test03'
+# )
+#
+# User.create(
+#   username: 'Test4',
+#   email: 'test4@gmail.com',
+#   password: 'test04'
+# )
+#
+#
+#
+# Question.create(
+#   title: "Welcome to StackJoverFlow",
+#   user_id: 2,
+#   body: "There Is Something You Should Know!
+#
+#   This is my very first post using markdown!
+#
+#   How do you like it?  I learned this from [RichOnRails.com](http://richonrails.com/articles/rendering-markdown-with-redcarpet)!"
+# )
+#
+# Question.create(
+#   title: "Whats for lunch?",
+#   user_id: 1,
+#   body: "Im starving. Where is a good place to go for lunch?"
+# )
+#
+# Question.create(
+#   title: "How do you render forms in RoR?",
+#   user_id: 4,
+#   body: "I have been trying to use the `render` helper in my HTML
+#
+#   But for some reasone it will
+#   ###NOT
+#   Do what I want it to"
+# )
+#
+# Question.create(
+#   title: "What is pagination?",
+#   user_id: 3,
+#   body: "Pagination has always given me trouble. How do I fix it?"
+# )
+#
+# Answer.create(
+#   body: 'Stack JF is the shizz!!',
+#   user_id: 2,
+#   question_id: 1
+# )
+#
+# Answer.create(
+#   body: 'Stack JF is the shizz!!',
+#   user_id: 3,
+#   question_id: 2
+# )
+#
+# Answer.create(
+#   body: 'Stack JF is the shizz!!',
+#   user_id: 1,
+#   question_id: 4
+# )
+# Answer.create(
+#   body: 'Stack JF is the shizz!!',
+#   user_id: 4,
+#   question_id: 3
+# )

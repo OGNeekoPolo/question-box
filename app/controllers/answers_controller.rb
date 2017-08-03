@@ -26,15 +26,15 @@ class AnswersController < ApplicationController
   end
 
   def edit
-    @answer = Answer.find(params[:id])
+    @answer = Answer.find(params[:question_id])
   end
 
   def update
-    @answer = Answer.find(params[:id])
-    if @answer.user == current_user
+    @answer = Answer.find(params[:question_id])
+    if @answer.user_id == session[:current_user_id]
       respond_to do |format|
         if @answer.update(answer_params)
-          format.html {redirect_to question_path(@answer.question), notice: "Answer has been updated"}
+          format.html {redirect_to question_path(@answer.question), alert: "Answer has been updated"}
           format.json {render :show, status: :ok, location: @answer}
         else
           format.html {render :edit}
@@ -45,7 +45,7 @@ class AnswersController < ApplicationController
   end
 
   def destroy
-    @answer = Answer.find(params[:id])
+    @answer = Answer.find(params[:question_id])
     @question = @answer.question
     @answer.destroy
     respond_to do |format|
