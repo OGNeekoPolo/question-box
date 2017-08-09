@@ -35,6 +35,7 @@ gem 'bcrypt', '~> 3.1.11'
 gem 'kaminari'
 gem 'redcarpet'
 gem 'haml'
+gem 'pg_search'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

@@ -3,6 +3,7 @@ class QuestionsController < ApplicationController
 
   def index
     @questions = Question.all.page params[:page]
+    @pg_search_documents = PgSearch.multisearch(params[:search])
   end
 
   def new
