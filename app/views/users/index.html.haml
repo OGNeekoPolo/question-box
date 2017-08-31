@@ -1,18 +1,27 @@
-%h1 Welcom to StackJFlow
 %br/
-%fieldset
-  %legend Member Log-In
-  = form_for :user do |u|
-    %p
-      = u.label :username
-      %br/
-      = u.text_field :username
-    %p
-      = u.label :password
-      %br/
-      = u.password_field :password
-    %p
-      = u.submit "Login"
-    %br/
-  %h4 If Not Already A Member
-  = link_to 'Member Registration', new_user_path
+.container.d-flex.justify-content-center
+  #loginbox.mainbox.col-8{:style => "margin-top:50px;"}
+    .panel.panel-info
+      .panel-heading
+        .panel-title Sign In
+      .panel-body{:style => "padding-top:30px"}
+        #login-alert.alert.alert-danger.col-sm-12{:style => "display:none"}
+        = form_for :user, class: "form-horizontal", id: "loginform" do |u|
+          .input-group{:style => "margin-bottom: 25px"}
+            %span.input-group-addon
+              = evil_icon 'ei-user', size: :s, class: "custom-class"
+            = u.text_field :username, class: "form-control", id: "login-username", placeholder: "username"
+          .input-group{:style => "margin-bottom: 25px"}
+            %span.input-group-addon
+              = evil_icon 'ei-lock', size: :s, class: "custom-class"
+            = u.password_field :password, class: 'form-control', id: 'login-password', placeholder: 'password'
+          .form-group
+            = u.submit "Login", class: "btn btn-primary"
+          .form-group
+            .col-md-12.control
+              %div{:style => "border-top: 1px solid#888; padding-top:15px; font-size:85%"}
+                Don't have an account!
+                %a{:href => "/users/new"}
+                  Sign Up Here
+%br/
+%br/

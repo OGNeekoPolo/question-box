@@ -1,0 +1,23 @@
+.jumbotron.text-center
+  %a.logo-link{:href => "#"}
+    %h1 StackJFlow
+    = image_tag("mario-block.png", size: "50x50")
+%nav.navbar.navbar-expand-lg.navbar-dark
+  %button.navbar-toggler{"aria-controls" => "navbarNav", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarNav", "data-toggle" => "collapse", :type => "button"}
+    %span.navbar-toggler-icon
+  #navbarNav.collapse.navbar-collapse
+    %ul.navbar-nav
+      %li.nav-item.active
+        %a.nav-link{:href => "/"}
+          Questions
+          %span.sr-only (current)
+        - if session[:current_user_id]
+          %li.nav-item
+            %a.nav-link{:href => "/questions/new"} New Question
+          %li.nav-item
+            = link_to 'Logout', logout_path, data: {confirm: 'Are you sure you want to logout?'}, class: "nav-link"
+          %li.nav-item
+            %strong.nav-link= "LoggedIn As: #{session[:current_username]}"
+        - else
+          %li.nav-item
+            = link_to 'Login', users_path, class: "nav-link"

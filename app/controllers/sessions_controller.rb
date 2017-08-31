@@ -5,6 +5,7 @@ class SessionsController < ApplicationController
     respond_to do |format|
       if @user && @user.authenticate(params[:user][:password])
         session[:current_user_id] = @user.id
+        session[:current_username] = @user.username
         format.html {redirect_to questions_path}
         format.json {render json: {token: @user.api_token}}
       else

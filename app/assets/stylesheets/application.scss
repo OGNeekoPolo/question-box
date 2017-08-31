@@ -13,5 +13,35 @@
  *= require_tree .
  *= require_self
  */
- @import "bootstrap-sprockets";
  @import "bootstrap";
+ @import "evil-icons";
+
+.logo-link {
+  color: black;
+
+  &:hover, &:focus {
+    color: gold;
+  }
+}
+
+.jumbotron {
+  margin-bottom: 0;
+  background-image: url("https://static0.fitbit.com/simple.b-cssdisabled-jpg.h2366b7ba34958d57b0e6cfbbd42686a3.pack?items=%2Fcontent%2Fassets%2Fadventures%2Fimages%2Fgallery%2Fyosemite4.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 150px;
+}
+
+nav {
+  background-color: #2E3138;
+}
+
+body {
+  background-color: #6C6F7D;
+}
+
+.mainbox {
+  margin: 0;
+  background-color: white;
+  padding: 20px;
+}

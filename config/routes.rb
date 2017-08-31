@@ -47,5 +47,5 @@ Rails.application.routes.draw do
     resources :answers
   end
 
-  root 'users#index'
+  root 'questions#index'
 end
