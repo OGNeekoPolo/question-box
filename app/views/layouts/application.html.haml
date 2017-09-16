@@ -1,10 +1,11 @@
 %html
   %head
-    %title StackJF
+    %title RoQIT Box
     = csrf_meta_tags
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
     = evil_icons_sprite
+    %link{:href => "https://fonts.googleapis.com/css?family=Russo+One", :rel => "stylesheet"}/
     %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}/
   %body
     = render :partial => 'layouts/header'

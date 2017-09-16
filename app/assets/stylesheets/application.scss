@@ -17,19 +17,25 @@
  @import "evil-icons";
 
 .logo-link {
-  color: black;
+  color: indigo;
+  font-family: 'Russo One', sans-serif;
+  text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
 
   &:hover, &:focus {
-    color: gold;
+    color: indigo;
+    text-decoration: none;
+  }
+
+  h1 {
+    font-size: 5em;
   }
 }
 
 .jumbotron {
   margin-bottom: 0;
-  background-image: url("https://static0.fitbit.com/simple.b-cssdisabled-jpg.h2366b7ba34958d57b0e6cfbbd42686a3.pack?items=%2Fcontent%2Fassets%2Fadventures%2Fimages%2Fgallery%2Fyosemite4.jpg");
+  background: url("https://upload.wikimedia.org/wikipedia/commons/6/6e/Veil_Nebula_-_NGC6960.jpg") no-repeat center center;
   background-size: cover;
   background-repeat: no-repeat;
-  padding: 150px;
 }
 
 nav {
