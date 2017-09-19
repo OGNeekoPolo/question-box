@@ -14,7 +14,7 @@ class User < ApplicationRecord
     thumb: '100x100>',
     square: '200x200#',
     medium: '300x300>'
-  }
+  }, :url => ':s3_domain_url'
 
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
 end
