@@ -1,14 +1,16 @@
 %br/
 %br/
-%fieldset
-  %legend Community Questions
-  .text-center
-    - @questions.each do |question|
-
-      %strong= link_to "#{question.title}", question_path(question)
-      %br/
-      %p= "Posted by: #{question.user.username}"
-      %p= "Created at: #{question.created_at}"
-      %br/
-      %br/
+%h2.text-center#comm-header Community Questions
+%br/
+%br/
+.container
+  - @questions.each do |question|
+    - @user = question.user
+    .media.quest-card
+      = image_tag @user.avatar.url(:square), class: "d-flex align-self-start mr-3"
+      .media-body.align-self-center.text-center
+        %h4.mt-0= link_to "#{question.title}", question_path(question), class: "quest-link"
+        %p= "Posted by: #{@user.username}"
+        %p= "Total Answers: #{question.answers.count}"
+        %p= "Created: #{time_ago_in_words(question.created_at)} ago"
 = paginate @questions

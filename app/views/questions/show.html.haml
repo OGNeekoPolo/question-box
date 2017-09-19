@@ -1,38 +1,42 @@
-.container-fluid
-  .jumbotron.text-center
-    %h1 StackJFlow
-    = image_tag("mario-block.png", size: "50x50")
-
-  = link_to 'Back', questions_path, class: "btn btn-default"
-  %fieldset
-    %legend Question Profile Page
-    %h3= @question.title
-    %br/
-    %p= markdown(@question.body)
-    - if @question.user_id == session[:current_user_id]
-      = link_to 'Edit', edit_question_path(@question), class: "btn btn-primary"
-      = link_to 'Delete', question_path(@question), method: :delete, data: {confirm: 'Are You Sure?'}, class: "btn btn-danger"
-    %br/
-    %br/
-  %fieldset
+.container
+  %br/
+  %br/
+  .card
+    .card-header.text-center
+      Question Profile Page
+    .card-body
+      %h4.card-title= @question.title
+      %p.card-text= markdown(@question.body)
+      - if @question.user_id == session[:current_user_id]
+        = link_to 'Edit', edit_question_path(@question), class: "btn btn-primary"
+        = link_to 'Delete', question_path(@question), method: :delete, data: {confirm: 'Are You Sure?'}, class: "btn btn-danger"
+    .card-footer.text-muted
+      = "Added #{time_ago_in_words(@question.created_at)} ago"
+  %br/
+  %br/
+  .row
     - if current_user
-      %strong Add An Answer
       = render :partial => 'answers/form'
     - else
-      %p Wanna chime in?
-      = link_to 'Login or Register', root_path
-    %br/
-    %br/
-    %strong Community Answers
-    %br/
-    %br/
-    - if @answers.empty?
-      %strong No Answers Yet!
-    - else
-      - @answers.each do |answer|
-        %div
-          %strong= "Posted by: #{answer.user.username}"
-          %p= markdown(answer.body)
-          - if answer.user_id == session[:current_user_id]
-            = link_to 'Edit', edit_question_answer_path(answer), class: "btn btn-primary"
-            = link_to 'Delete', question_answer_path(answer), method: :delete, data: {confirm: 'Delete this answer?'}, class: "btn btn-primary"
+      .col-sm-4
+        .card
+          .card-body
+            %p.card-text Wanna chime in?
+            = link_to 'Login or Register', root_path
+    .col-sm-8
+      .card
+        %h4.card-header Community Answers
+        - if @answers.empty?
+          %strong.card-text No Answers Yet!
+        - else
+          - @answers.each do |answer|
+            .media.answer-card
+              - @user = answer.user
+              = image_tag @user.avatar.url(:thumb), class: "d-flex align-self-start mr-3"
+              .media-body.align-self-center
+                %strong.mt-0= "Posted by: #{@user.username}"
+                %p= markdown(answer.body)
+                %p= "Created: #{time_ago_in_words(answer.created_at)} ago"
+                - if answer.user_id == session[:current_user_id]
+                  = link_to 'Edit', edit_question_answer_path(answer), class: "btn btn-primary"
+                  = link_to 'Delete', question_answer_path(answer), method: :delete, data: {confirm: 'Delete this answer?'}, class: "btn btn-primary"

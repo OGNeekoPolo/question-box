@@ -36,6 +36,8 @@ gem 'kaminari'
 gem 'redcarpet'
 gem 'haml'
 gem 'evil_icons'
+gem 'paperclip'
+gem 'aws-sdk'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

@@ -17,7 +17,8 @@
           %li.nav-item
             = link_to 'Logout', logout_path, data: {confirm: 'Are you sure you want to logout?'}, class: "nav-link"
           %li.nav-item
-            %strong.nav-link= "LoggedIn As: #{session[:current_username]}"
+            - @user = User.find(session[:current_user_id])
+            %strong= link_to "LoggedIn As: #{@user.username}", user_path(@user), class: 'nav-link', id: 'pro-link'
         - else
           %li.nav-item
             = link_to 'Login', users_path, class: "nav-link"

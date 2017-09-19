@@ -1,7 +1,10 @@
-= form_for :answer do |a|
-  %p
-    = a.label :body
-    %br/
-    = a.text_area :body
-  %p
-    = a.submit 'Post Answer'
+.col-sm-4
+  .card
+    .card-body
+      = form_for :answer do |a|
+        .form-group
+          = a.label :body, "Add Your 2 Cents..."
+          %br/
+          = a.text_area :body, class: 'form-control', rows: 5
+        .form-group
+          = a.submit 'Post Answer'

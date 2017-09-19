@@ -1,0 +1,46 @@
+%br/
+.container.d-flex.justify-content-center
+  #loginbox.mainbox.col-8{:style => "margin-top:50px;"}
+    .panel.panel-info
+      .panel-heading
+        .panel-title New Member Registration
+      .panel-body{:style => "padding-top:30px"}
+        #login-alert.alert.alert-danger.col-sm-12{:style => "display:none"}
+        = form_for :user, multipart: true, class: "form-horizontal", id: "loginform" do |u|
+          - if @user.errors.any?
+            #error_explanation
+              %h2
+                = pluralize(@user.errors.count, "error")
+                prohibited
+                this user from being saved:
+              %ul
+                - @user.errors.full_messages.each do |msg|
+                  %li= msg
+          .input-group{:style => "margin-bottom: 25px"}
+            %span.input-group-addon
+              = evil_icon 'ei-user', size: :s, class: "custom-class"
+            = u.text_field :username, class: "form-control", placeholder: "username"
+          .input-group{:style => "margin-bottom: 25px"}
+            %span.input-group-addon
+              = evil_icon 'ei-envelope', size: :s, class: "custom-class"
+            = u.email_field :email, class: "form-control", placeholder: "email address"
+          .input-group{:style => "margin-bottom: 25px"}
+            %span.input-group-addon
+              = evil_icon 'ei-lock', size: :s, class: "custom-class"
+            = u.password_field :password, class: 'form-control', placeholder: 'password'
+          .input-group{:style => "margin-bottom: 25px"}
+            %span.input-group-addon
+              = evil_icon 'ei-lock', size: :s, class: "custom-class"
+            = u.password_field :password_confirmation, class: "form-control", placeholder: "password confirmation"
+          .input-group{:style => "margin-bottom: 25px"}
+            %span.input-group-addon
+              = evil_icon 'ei-camera', size: :s, class: "custom-class"
+            = u.file_field :avatar, class: "form-control"
+          .input-group{:style => "margin-bottom: 25px"}
+            %span.input-group-addon
+              = evil_icon 'ei-pencil', size: :s, class: "custom-class"
+            = u.text_field :intro, class: "form-control", placeholder: 'One sentence intro...'
+          .form-group
+            = u.submit "Register", class: "btn btn-primary"
+%br/
+%br/

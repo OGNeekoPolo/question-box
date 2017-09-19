@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-  before_action :loggedin
 
   def index
   end
@@ -18,8 +17,26 @@ class UsersController < ApplicationController
     end
   end
 
+  def show
+    @user = User.find(session[:current_user_id])
+  end
+
+  def edit
+    @user = User.find(session[:current_user_id])
+  end
+
+  def update
+    @user = User.find(session[:current_user_id])
+
+    if @user.update(user_params)
+      redirect_to @user
+    else
+      render 'edit'
+    end
+  end
+
   private
     def user_params
-      params.require(:user).permit(:username, :email, :password, :password_confirmation)
+      params.require(:user).permit(:username, :email, :password, :password_confirmation, :avatar, :intro)
     end
 end

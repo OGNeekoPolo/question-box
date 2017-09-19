@@ -30,7 +30,6 @@ Rails.application.routes.draw do
 
   post 'questions/:id', to: 'answers#create'
 
-
   post 'users/new', to: 'users#create'
 
   get 'users/new', to: 'users#new', as: :new_user
@@ -41,7 +40,15 @@ Rails.application.routes.draw do
 
   get '/users', to: 'users#index', as: :login
 
+  post '/profile/edit', to: 'users#update'
+
+  get '/profile/edit', to: 'users#edit', as: :edit_user
+
+  get '/profile', to: 'users#show', as: :user
+
   post '/questions/:question_id/answers/:id/edit', to: 'answers#update'
+
+  resources :users, only: [:destroy]
 
   resources :questions do
     resources :answers

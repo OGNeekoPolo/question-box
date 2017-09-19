@@ -1,0 +1,17 @@
+%br/
+%br/
+.container
+  .row
+    .card.col-sm-3.text-center
+      %br/
+      = image_tag @user.avatar.url(:square), class: "rounded-circle"
+      .card-body
+        %h4.card-title= @user.username
+        %p.card-text= @user.intro
+      %ul.list-group.list-group-flush
+        %li.list-group-item= "Questions Posted: #{@user.questions.count}"
+        %li.list-group-item= "Answers Posted: #{@user.answers.count}"
+      .card-body
+        - if session[:current_user_id] == @user.id
+          = link_to 'Edit Profile', edit_user_path, class: 'card-link'
+        %a.card-link{:href => "mailto:#{@user.email}"} Contact
