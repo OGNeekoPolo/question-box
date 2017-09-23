@@ -6,7 +6,7 @@
         .panel-title New Member Registration
       .panel-body{:style => "padding-top:30px"}
         #login-alert.alert.alert-danger.col-sm-12{:style => "display:none"}
-        = form_for :user, multipart: true, class: "form-horizontal", id: "loginform" do |u|
+        = form_for @user, multipart: true, class: "form-horizontal", id: "loginform" do |u|
           - if @user.errors.any?
             #error_explanation
               %h2
